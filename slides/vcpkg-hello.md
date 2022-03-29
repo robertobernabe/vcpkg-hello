@@ -5,10 +5,11 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 marp: true
+footer: ''
 ---
 
 
-![bg left:40% 80%](assets/florian_schaeffeler.jpg)
+![grayscale bg left](assets/florian_schaeffeler.jpg)
 
 
 
@@ -64,6 +65,7 @@ The package fmt provides CMake targets:
     target_link_libraries(main PRIVATE fmt::fmt)
 
 ```
+
 ---
 
 # Behind the scenes
@@ -119,8 +121,10 @@ vcpkg_cmake_configure(
 │   ├── libfmt.a
 ```
 ---
-# Integrate vcpkg to your project
-- Place an `vcpkg.json` into your project root
+
+# Integrate vcpkg to your C/C++ project
+
+- Place a `vcpkg.json` into your project root
 ```json
 {
   "name": "vcpkg-hello",
@@ -130,5 +134,18 @@ vcpkg_cmake_configure(
   ]
 }
 ```
-- Run `vcpkg install` will find deps specified in`vcpkg.json` and istall them
+- Run `vcpkg install` will find the dependencies specified in `vcpkg.json` and install them
+
 ---
+
+# Integrate vcpkg to the build
+
+- Vcpkg fits quite well in the cmake build process
+
+```shell
+# Configure it, will initiate also the vcpkg bootstrapping
+cmake -B <build_dir> -S . -DCMAKE_TOOLCHAIN_FILE=<path to vcpkg>/scripts/buildsystems/vcpkg.cmake
+
+# Build the actual project
+cmake --build <build_dir>
+```
