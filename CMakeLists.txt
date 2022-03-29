@@ -28,5 +28,4 @@ project(
   VERSION 0.0.1
   )
 include(GNUInstallDirs)
-
 add_subdirectory(src)

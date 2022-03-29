@@ -18,7 +18,10 @@ footer: ''
 Florian Schäffeler :de::es:
 :birthday: 38 years old
 :computer: Software Developer, Build Engineer @ Avira (Now Part of NortonLifeLock)
+:email: hello@fschaeffeler.de
 :round_pushpin: Überlingen
+
+:link: [robertobernabe/vcpkg-hello](https://github.com/robertobernabe/vcpkg-hello)
 
 ---
 
@@ -142,6 +145,7 @@ vcpkg_cmake_configure(
 
 - Vcpkg fits quite well in the cmake build process
 
+
 ```shell
 # Configure it, will initiate also the vcpkg bootstrapping
 cmake -B <build_dir> -S . -DCMAKE_TOOLCHAIN_FILE=<path to vcpkg>/scripts/buildsystems/vcpkg.cmake
@@ -149,3 +153,16 @@ cmake -B <build_dir> -S . -DCMAKE_TOOLCHAIN_FILE=<path to vcpkg>/scripts/buildsy
 # Build the actual project
 cmake --build <build_dir>
 ```
+- Using `vcpkg` as git submodule, you even don't have to pass `CMAKE_TOOLCHAIN_FILE` to the cmake invocation.
+
+```cmake
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
+  CACHE STRING "Vcpkg toolchain file")
+```
+
+---
+
+# Questions ?
+
+
+---
