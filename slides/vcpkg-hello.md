@@ -65,6 +65,45 @@ The package fmt provides CMake targets:
 
 ```
 ---
+
+# Behind the scenes
+
+- Each package is defined as portfile in `vcpkg/ports/<portname>/portfile.cmake`
+    - E.g. [vcpkg/ports/fmt/portfile.cmake](https://github.com/microsoft/vcpkg/blob/master/ports/fmt/portfile.cmake) 
+- Each portfile is normally build up the same
+    1. Download the sources
+    2. Configure the build tool. E.g. cmake or even msbuild, bazel...
+    3. Build the package from sources
+    4. If build succeed, place 
+      - the bin/lib in `vcpkg/installed/<arch>/bin` or `<arch>/lib`
+      - place the headers in `<arch>/include` 
+
+---
+
+```cmake
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO fmtlib/fmt
+    REF 8.1.1
+    SHA512 794a47d7cb352a2a9f2c050a60a46b002e4157e5ad23e15a5afc668e852b1e1847aeee3cda79e266c789ff79310d792060c94976ceef6352e322d60b94e23189
+    HEAD_REF master
+    PATCHES
+        fix-write-batch.patch
+        fix-invalid-command.patch
+)
+
+vcpkg_cmake_configure(
+    SOURCE_PATH "${SOURCE_PATH}"
+    OPTIONS
+        -DFMT_CMAKE_DIR=share/fmt
+        -DFMT_TEST=OFF
+        -DFMT_DOC=OFF
+)
+
+```
+
+---
+
 # vcpkg/installed/<arch>
 ```
 ── debug
@@ -80,7 +119,7 @@ The package fmt provides CMake targets:
 │   ├── libfmt.a
 ```
 ---
-# Integrate into your build
+# Integrate vcpkg to your project
 - Place an `vcpkg.json` into your project root
 ```json
 {
@@ -91,5 +130,5 @@ The package fmt provides CMake targets:
   ]
 }
 ```
-- Run `vcpkg install` will find dep specified in`vcpkg.json` and istall them
+- Run `vcpkg install` will find deps specified in`vcpkg.json` and istall them
 ---
