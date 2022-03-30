@@ -21,7 +21,11 @@ Florian Schäffeler :de::es:
 :email: hello@fschaeffeler.de
 :round_pushpin: Überlingen
 
+Interests:
+💻🥾🐶📖
+
 :link: [robertobernabe/vcpkg-hello](https://github.com/robertobernabe/vcpkg-hello)
+
 
 ---
 
@@ -33,6 +37,18 @@ For all platforms, buildsystems, and workflows
 https://vcpkg.io/
 
 ---
+
+
+- Cross platform C/C++ package manager
+    - Windows, Linux, MacOs
+- Round about 1900 available packages
+- Package recipes based on CMake
+- Integrates also in your IDE
+   - Visual Studio
+   - Visual Studio Code with CMake Tools
+   - CLion
+---
+
 # Basic usage
 
 ```shell
@@ -164,5 +180,6 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/
 
 # Questions ?
 
-
 ---
+
+# Demo
