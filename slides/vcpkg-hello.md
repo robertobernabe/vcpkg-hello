@@ -178,6 +178,27 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/
 
 ---
 
+# Integrate vcpkg to the build
+
+
+```cmake
+project(vcpkg-hello VERSION 0.0.1)
+
+add_executable(vcpkg_hello main.cpp)
+find_package(fmt REQUIRED)
+target_link_libraries(vcpkg_hello PRIVATE fmt::fmt)
+```
+
+```c++
+#include <fmt/format.h>
+
+int main() {
+	fmt::print("Hello Vcpkg. Hello {}\n", "world");
+}
+```
+
+---
+
 # Questions ?
 
 ---
