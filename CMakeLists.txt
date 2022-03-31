@@ -6,9 +6,9 @@ if(NOT DEFINED VCPKG_ROOT)
       CACHE PATH "Path to vcpkg directory")
 endif()
 
-set(VCPKG_APPINSTALL_DEPS ON)
-set(VCPKG_APPLOCAL_DEPS_INSTALL ON)
-set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
+# Copy the third party binaries to the install target
+option(VCPKG_APPLOCAL_DEPS_INSTALL ON)
+option(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 
 if(DEFINED VCPKG_ROOT)
   set(CMAKE_TOOLCHAIN_FILE
@@ -22,10 +22,11 @@ if(DEFINED VCPKG_ROOT)
   endif()
 endif()
 
+option(BUILD_TESTS "Build tests" OFF)
+if(BUILD_TESTS)
+  list(APPEND VCPKG_MANIFEST_FEATURES "tests")
+endif()
 
-project(
-  vcpkg-hello
-  VERSION 0.0.1
-  )
+project(vcpkg-hello VERSION 0.0.1)
 include(GNUInstallDirs)
 add_subdirectory(src)

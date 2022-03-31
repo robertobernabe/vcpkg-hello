@@ -1,7 +1,15 @@
 {
-	"name": "vcpkg-hello",
-	"version": "0.0.1",
-	"dependencies": [
-		"fmt"
-	]
+    "name": "vcpkg-hello",
+    "version": "0.0.1",
+    "dependencies": [
+        "fmt"
+    ],
+    "features": {
+        "tests": {
+            "description": "Dependencies for building the tests",
+            "dependencies": [
+                "gtest"
+            ]
+        }
+    }
 }
